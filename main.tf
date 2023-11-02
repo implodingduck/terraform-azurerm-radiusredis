@@ -1,6 +1,6 @@
 locals {
     name = "radsql${substr(sha512(var.context.resource.id), 0, 16)}"
-    merged_tags    = merge({ managed_by = "terraform" }, var.tags)
+    merged_tags    = merge({ managed_by = "terraform", resource_id = var.context.resource.id }, var.tags)
     loc_for_naming = lower(replace(var.location, " ", ""))
 }
 
@@ -18,7 +18,7 @@ resource "azurerm_redis_cache" "this" {
   name                = "${local.name}cache"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
-  capacity            = 1
+  capacity            = 0
   family              = "C"
   sku_name            = "Basic"
   enable_non_ssl_port = false
@@ -26,4 +26,5 @@ resource "azurerm_redis_cache" "this" {
 
   redis_configuration {
   }
+  tags = local.merged_tags
 }

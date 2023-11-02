@@ -1,12 +1,12 @@
 output "result" {
   value = {
     values = {
-      host = ""
-      port = 0
+      host = azurerm_redis_cache.this.hostname
+      port = azurerm_redis_cache.this.port
       username = ""
     }
     secrets = {
-      password = ""
+      password = azurerm_redis_cache.this.primary_access_key
     }
     // UCP resource IDs
     resources = [
