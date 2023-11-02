@@ -7,7 +7,7 @@ locals {
 data "azurerm_client_config" "current" {}
 
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "this" {
   name     = "rg-${local.name}-${local.loc_for_naming}"
   location = var.location
   tags     = local.merged_tags
