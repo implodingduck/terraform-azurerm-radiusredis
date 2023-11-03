@@ -2,7 +2,7 @@ output "result" {
   value = {
     values = {
       host = azurerm_redis_cache.this.hostname
-      port = azurerm_redis_cache.this.port
+      port = azurerm_redis_cache.this.ssl_port
       username = ""
     }
     secrets = {
